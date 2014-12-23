@@ -1,3 +1,26 @@
-task hello(type: GreetingTask) << {
-	println 'Hi from test'
+apply from: 'task.gradle'
+
+println "Build.gradle project $project.name"
+
+task hello(type: GreetingTaskInSrc) << {
+	println 'Hi from hello'
+}
+
+task hello2(type: GreetingTaskInBuildGradle) << {
+	println 'Hi from hello2'
+}
+
+task hello3 << {
+	taskHelperInApplyFrom.greet('hello3')
+}
+
+task hello4(dependsOn:helloInApplyFrom) << {
+	println 'Hi from hello4'	
+}
+
+class GreetingTaskInBuildGradle extends DefaultTask {
+    @TaskAction
+    def greet() {
+        println 'hello from GreetingTaskGradle'
+    }
 }

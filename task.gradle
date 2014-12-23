@@ -1,0 +1,11 @@
+task helloInApplyFrom << {
+	new TaskHelperInApplyFrom().greet('helloInApplyFrom Task')
+}
+
+class TaskHelperInApplyFrom {
+	def greet(String greeting) {
+		println "Hi $greeting, from TaskHelperInApplyFrom"
+	}
+}
+
+ext.taskHelperInApplyFrom = new TaskHelperInApplyFrom()
